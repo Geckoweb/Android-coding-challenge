@@ -1,6 +1,6 @@
 # Solution
 
-Hi there. I worked on this challange about 5-6 hours on Saturday and 2-3 hours on Sunday. For this implemetation I decided to use some of Architecture components introduced by Google last year like ViewModel and LiveData. The solution contains 3 inner modules. 
+Hi there. I worked on this challange about 5-6 hours on Saturday and 4-5 hours on Sunday. For this implemetation I decided to use some of Architecture components introduced by Google last year like ViewModel and LiveData. The solution contains 3 inner modules. 
 
 * __Adapter__ -  contains the adapter thath provide to fill recyclerView  with data retreived from rest call.
 * __DataProvider__ - contains interface and a wrapper class used to fetch data from GitHub repo. To do this I used [Retrofit 2](http://square.github.io/retrofit/) library and [Jackson](https://github.com/FasterXML/jackson) as a serilizator - deserializator.
