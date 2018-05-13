@@ -17,6 +17,10 @@ public class MainListViewModel extends ViewModel {
     private MutableLiveData<Boolean> waiting;
     private MutableLiveData<String> errorMessage;
 
+    /**
+     * getter for commits data that provide to create it if are not already instntiated
+     * @return a LiveData with a list of GitEntry
+     */
     public LiveData<List<GitEntry>> getCommits() {
         if (commits == null) {
             commits = new MutableLiveData<List<GitEntry>>();
@@ -25,6 +29,10 @@ public class MainListViewModel extends ViewModel {
         return commits;
     }
 
+    /**
+     * getter for waiting flag that provide to create it if are not already instntiated
+     * @return a LiveData with the waiting flag
+     */
     public LiveData<Boolean> isWaiting() {
         if (waiting == null){
             waiting = new MutableLiveData<>();
@@ -32,6 +40,10 @@ public class MainListViewModel extends ViewModel {
         return waiting;
     }
 
+    /**
+     * getter for error that provide to create it if are not already instntiated
+     * @return a LiveData with the error message to show
+     */
     public LiveData<String> isInError() {
         if (errorMessage == null){
             errorMessage = new MutableLiveData<>();
@@ -39,6 +51,10 @@ public class MainListViewModel extends ViewModel {
         return errorMessage;
     }
 
+    /**
+     * This private method is used to retrieve data fom internet.
+     * it provade also to set live data for waiting flag and errorMessage
+     */
     private void fetchData() {
         waiting.setValue(true);
         errorMessage.setValue(null);

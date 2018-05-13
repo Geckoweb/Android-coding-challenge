@@ -16,14 +16,28 @@ public class GitEntryAdapter extends RecyclerView.Adapter<GitEntryViewHolder> {
 
     private List<GitEntry> gitEntryList;
 
+    /**
+     * Simple constructor that init a data source with an empty list
+     */
     public GitEntryAdapter() {
         this.gitEntryList = new ArrayList<>();
     }
 
+    /**
+     * Setter for the data source
+     * @param gitEntryList data source
+     */
     public void setGitEntryList(List<GitEntry> gitEntryList) {
         this.gitEntryList = gitEntryList;
     }
 
+
+    /**
+     * Method called from system when need to create a new view holder to be filled
+     * @param parent parent view where inflate git_entry_layout
+     * @param viewType
+     * @return an empty GitEntryViewHolder
+     */
     @NonNull
     @Override
     public GitEntryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,6 +46,11 @@ public class GitEntryAdapter extends RecyclerView.Adapter<GitEntryViewHolder> {
         return new GitEntryViewHolder(mainView) ;
     }
 
+    /**
+     * Method called from system when have a GitEntryViewHolder ready to fill
+     * @param holder GitEntryViewHolder to be filled
+     * @param position the position in the list of data source where gets information
+     */
     @Override
     public void onBindViewHolder(@NonNull GitEntryViewHolder holder, int position) {
         GitEntry entry = gitEntryList.get(position);
@@ -41,6 +60,10 @@ public class GitEntryAdapter extends RecyclerView.Adapter<GitEntryViewHolder> {
         holder.getCommitDescriptiontextView().setText(entry.getCommitMessage());
     }
 
+    /**
+     * Method called from the system to know how many data are currently present
+     * @return
+     */
     @Override
     public int getItemCount() {
         return gitEntryList.size();

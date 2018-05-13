@@ -6,6 +6,9 @@ import android.widget.TextView;
 
 import com.example.trova.pycomchallenge.R;
 
+/**
+ * simple class used as an holder to recycle components
+ */
 public class GitEntryViewHolder extends RecyclerView.ViewHolder {
 
     private TextView authorNameTextView;
@@ -19,14 +22,26 @@ public class GitEntryViewHolder extends RecyclerView.ViewHolder {
         commitDescriptiontextView = itemView.findViewById(R.id.commit_description);
     }
 
+    /**
+     * Getter method
+     * @return a reference to a TextView for author name
+     */
     public TextView getAuthorNameTextView() {
         return authorNameTextView;
     }
 
+    /**
+     * Getter method
+     * @return a reference to a TextView for commit sha
+     */
     public TextView getCommitIdTextView() {
         return commitIdTextView;
     }
 
+    /**
+     * Getter method
+     * @return a reference to a TextView for description message
+     */
     public TextView getCommitDescriptiontextView() {
         return commitDescriptiontextView;
     }

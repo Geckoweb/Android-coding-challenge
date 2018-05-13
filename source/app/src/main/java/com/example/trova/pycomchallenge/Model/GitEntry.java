@@ -56,7 +56,7 @@ public class GitEntry {
 
 
     /**
-     * Utility methods added to retreive data simpler
+     * Utility methods added to retrieve data simpler
      * */
     public String getAuthorName() {
         return commit.getAuthor().getName();
