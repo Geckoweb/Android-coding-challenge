@@ -12,5 +12,5 @@ In the main project was added also a couple of tests providing check for deseria
 ## Improvements
 * Currently the project doesn't have any kind of persistence management. It could be used Room and sqlite to save data fetched and consult it offline after firs time.
 * The data are retrieved from internet every tyme you start the application. is not present a "pull to refresh" system that could be easly implemented using SwipeToRefresh layout and a listener.
-* Could be nice use binding in Adapter to avoid findViewById.
+* Could be nice use binding in viewHolder to avoid findViewById.
 * There is a poor error management. I checked only internet error. Could be useful send different messages for different errors. 
