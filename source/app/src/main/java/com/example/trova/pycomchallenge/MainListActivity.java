@@ -79,7 +79,7 @@ public class MainListActivity extends AppCompatActivity {
     private void buildProgress(){
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.setMessage("Fetching data from GitHub");
+        progressDialog.setMessage(getString(R.string.fetching_data));
         progressDialog.setIndeterminate(false);
     }
 
@@ -87,16 +87,14 @@ public class MainListActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setMessage("Unable to retreive data from server.\n" +
-                "message: "+message+"\n" +
-                "Please check your internet connection")
-                .setTitle("Error");
+        builder.setMessage(getString(R.string.default_error_message, message))
+                .setTitle(R.string.error);
 
-        builder.setPositiveButton("Retry", (dialog, id) -> {
+        builder.setPositiveButton(R.string.retry, (dialog, id) -> {
             fetchData();
             dialog.dismiss();
         });
-        builder.setNegativeButton("Cancel", (dialog, id) -> {
+        builder.setNegativeButton(R.string.cancel, (dialog, id) -> {
             dialog.dismiss();
         });
 
