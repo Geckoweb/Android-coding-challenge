@@ -14,3 +14,4 @@ In the main project was added also a couple of tests providing check for deseria
 * The data are retrieved from internet every tyme you start the application. is not present a "pull to refresh" system that could be easly implemented using SwipeToRefresh layout and a listener.
 * Could be nice use binding in viewHolder to avoid findViewById.
 * There is a poor error management. I checked only internet error. Could be useful send different messages for different errors. 
+* Are presents only a couple of unit tests for happy path. The project need more tests to have an acceptable coverage
