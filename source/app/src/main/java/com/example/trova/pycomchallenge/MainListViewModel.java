@@ -15,6 +15,7 @@ public class MainListViewModel extends ViewModel {
 
     private MutableLiveData<List<GitEntry>> commits;
     private MutableLiveData<Boolean> waiting;
+    private MutableLiveData<String> errorMessage;
 
     public LiveData<List<GitEntry>> getCommits() {
         if (commits == null) {
@@ -31,18 +32,26 @@ public class MainListViewModel extends ViewModel {
         return waiting;
     }
 
+    public LiveData<String> isInError() {
+        if (errorMessage == null){
+            errorMessage = new MutableLiveData<>();
+        }
+        return errorMessage;
+    }
+
     private void fetchData() {
         waiting.setValue(true);
+        errorMessage.setValue(null);
         Thread task = new Thread(new Runnable() {
             @Override
             public void run() {
                 GitNetworkProvider networkProvider = new GitNetworkProvider();
                 try {
                     commits.postValue(networkProvider.getDataFromGitHub());
-
                 } catch (IOException e) {
                     e.printStackTrace();
-                    // notify user network issues
+                    commits = null;
+                    errorMessage.postValue(e.getLocalizedMessage());
                 }
                 waiting.postValue(false);
             }

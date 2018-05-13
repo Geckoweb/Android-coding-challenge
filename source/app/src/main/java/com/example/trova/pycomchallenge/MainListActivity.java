@@ -1,5 +1,6 @@
 package com.example.trova.pycomchallenge;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class MainListActivity extends AppCompatActivity {
 
     private GitEntryAdapter adapter;
     private ProgressDialog progressDialog;
+    private AlertDialog dialog;
     MainListViewModel viewModel ;
 
     @Override
@@ -28,7 +30,18 @@ public class MainListActivity extends AppCompatActivity {
         adapter = new GitEntryAdapter();
         mainReciclerView.setAdapter(adapter);
         initProrgess();
+        initErrorDialog();
         fetchData();
+    }
+
+    private void initErrorDialog() {
+        viewModel.isInError().observe(this,errorMessage ->{
+            if (errorMessage!= null){
+                showErrorMessage(errorMessage);
+            }else{
+                hideErrorMessage();
+            }
+        });
     }
 
     private void initProrgess() {
@@ -68,5 +81,33 @@ public class MainListActivity extends AppCompatActivity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.setMessage("Fetching data from GitHub");
         progressDialog.setIndeterminate(false);
+    }
+
+    private void showErrorMessage(String message){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setMessage("Unable to retreive data from server.\n" +
+                "message: "+message+"\n" +
+                "Please check your internet connection")
+                .setTitle("Error");
+
+        builder.setPositiveButton("Retry", (dialog, id) -> {
+            fetchData();
+            dialog.dismiss();
+        });
+        builder.setNegativeButton("Cancel", (dialog, id) -> {
+            dialog.dismiss();
+        });
+
+        dialog= builder.create();
+        dialog.show();
+    }
+
+
+    private void hideErrorMessage() {
+        if(dialog != null && dialog.isShowing()){
+            dialog.dismiss();
+        }
     }
 }
